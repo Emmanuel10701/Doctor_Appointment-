@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
     <div className="fixed top-0 left-0 w-full bg-white border-b border-blue-300 shadow-md py-4 z-50">
       <div className="container mx-auto flex items-center justify-between px-4 md:px-8">
         <div className="w-44 cursor-pointer">
-          <Image src="/logo.png" alt="Logo" width={176} height={50} />
+          <Image src="public/assets/assets_frontend/logo.svg" alt="Logo" width={176} height={50} />
         </div>
 
         <nav className="hidden md:flex items-center gap-6">

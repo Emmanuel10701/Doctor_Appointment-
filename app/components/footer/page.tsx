@@ -38,17 +38,17 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-white text-slate-600 py-10">
-      <div className="container mx-auto flex flex-col md:flex-row items-start justify-between">
+      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
         
         {/* Image and Description */}
         <div className="flex flex-col flex-1 items-center md:items-start mb-6">
           <Image
-            src="/assets/assets_frontend/h1.webp"
+            src="public/assets/assets_frontend/logo.svg"
             alt="Logo"
             width={150}
             height={150}
           />
-          <p className="text-md text-slate-700 text-center md:text-left w-1/2 mt-2">
+          <p className="text-sm text-slate-700 font-bold text-center md:text-left w-[70%] mt-2">
             Your trusted healthcare partner. Empowering you to make informed decisions. Together, we navigate your health journey. Committed to your well-being every step of the way. Dedicated to building a healthier future for you.
           </p>
         </div>
