@@ -41,7 +41,7 @@ const HeroSection: React.FC = () => {
 
   return (
     <div>
-      <div className="hero min-h-screen flex bg-blue-100">
+      <div className="hero min-h-screen md:flex flex-col-reverse bg-blue-100">
         <div className="hero-overlay bg-opacity-60 flex flex-row">
           <div className="hero-content text-neutral-content flex flex-col justify-center w-6/12 p-8"> {/* 60% width for text */}
             <h1 className="mb-5 text-5xl font-bold bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
@@ -115,19 +115,19 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Doctors Cards Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
+      <div className="flex flex-wrap gap-8 mx-20 ">
         {filteredDoctors.map((doctor) => (
           <div key={doctor.id} className="border rounded-lg overflow-hidden shadow-md">
             <Image
               src={doctor.image}
               alt={doctor.name}
-              width={300}
-              height={200}
+              width={140}
+              height={90}
               className="object-cover w-full h-40"
             />
             <div className="p-4">
               <span className={`text-sm font-bold ${doctor.available ? 'text-green-500' : 'text-red-500'}`}>
-                {doctor.available ? 'Available' : 'Not Available'}
+                {doctor.available ? '. Available' : ' . Not Available'}
               </span>
               <h2 className="mt-2 text-lg font-semibold">{doctor.name}</h2>
               <p className="text-sm text-slate-500">{doctor.specialty}</p>
@@ -137,23 +137,15 @@ const HeroSection: React.FC = () => {
       </div>
 
       {/* Load More Button */}
-      <div className="text-center mb-10">
-        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700">
+      <div className="text-center my-10">
+        <button className="bg-indigo-200 hover:bg-indigo-300 text-slate-700 py-3 px-4 rounded-full  hover:bg-slate-1000">
           Load More
         </button>
       </div>
 
       {/* Banner Section */}
-      <div className="flex items-center bg-blue-600 text-white p-10">
-        <div className="w-1/2">
-          <Image
-            src="/assets/assets_frontend/banner_image.jpg" // Replace with your actual banner image
-            alt="Banner"
-            width={500}
-            height={300}
-            className="object-cover"
-          />
-        </div>
+      <div className="flex items-center mx-auto   justify-center w-[78%] rounded-lg h-[88%] bg-blue-600 text-white p-10">
+     
         <div className="w-1/2 flex flex-col justify-center p-5">
           <h1 className="text-3xl font-bold mb-4">Create Your Account Today</h1>
           <p className="mb-4">
@@ -167,6 +159,16 @@ const HeroSection: React.FC = () => {
               Book Appointment
             </button>
           </div>
+       
+        </div>
+        <div className="w-1/2">
+          <Image
+            src="/assets/assets_frontend/appointment_img.png" // Replace with your actual banner image
+            alt="Banner"
+            width={300}
+            height={190}
+            className="object-cover"
+          />
         </div>
       </div>
     </div>
