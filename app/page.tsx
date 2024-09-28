@@ -54,19 +54,19 @@ const HeroSection: React.FC = () => {
               <Image
                 src="/assets/assets_frontend/group_profiles.png"
                 alt="Group of healthcare professionals"
-                width={60}
-                height={50}
+                width={100}
+                height={100}
                 className="object-cover"
               />
-              <p className="mb-5 text-sm text-slate-500 ml-4">
+              <p className="mb-5 text-sm text-justify text-slate-500 ml-5">
                 Get personalized care tailored to your needs with our dedicated team of experienced healthcare professionals.
+                Your health is our priority, and we are here to support you every step of the way.
+
               </p>
             </div>
-            <p className="mb-5 text-sm text-slate-500">
-              Your health is our priority, and we are here to support you every step of the way.
-            </p>
-            <div className="flex justify-center">
-              <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold py-3 px-4  rounded-full flex items-center w-1/2">
+            
+            <div className="flex justify-center items-center">
+              <button className="bg-gradient-to-r from-blue-500 to-blue-700 text-white text-center font-bold py-3 px-4  rounded-full flex items-center w-1/2">
                 Book Appointment <ArrowRight className="ml-2" />
               </button>
             </div>
