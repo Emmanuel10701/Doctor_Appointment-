@@ -71,7 +71,7 @@ const HeroSection: React.FC = () => {
               </button>
             </div>
           </div>
-          <div className=" w-6/12">
+          <div className="flex flex-1 w-6/12">
             <Image
               src="/assets/assets_frontend/header_img.png"
               alt="Doctor with patient"
