@@ -9,7 +9,7 @@ const AppointmentDetail: React.FC = () => {
   const [selectedTime, setSelectedTime] = useState('');
   const [appointmentConfirmed, setAppointmentConfirmed] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const modalRef = useRef<HTMLDivElement>(null); // Ref for the modal
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const doctor = {
     name: 'Dr. Smith',
@@ -19,7 +19,31 @@ const AppointmentDetail: React.FC = () => {
     image: '/assets/assets_frontend/doc1.png',
   };
 
+  const appointmentFee = 50; // Define appointment fee
   const times = ['6:00 AM', '8:00 AM', '10:00 AM', '1:00 PM', '3:00 PM', '5:00 PM'];
+
+  const relatedDoctors = [
+    {
+      name: 'Dr. Johnson',
+      specialty: 'Dentist 🦷',
+      image: '/assets/assets_frontend/doc2.png',
+    },
+    {
+      name: 'Dr. Lee',
+      specialty: 'Dentist 🦷',
+      image: '/assets/assets_frontend/doc3.png',
+    },
+    {
+      name: 'Dr. Brown',
+      specialty: 'Dentist 🦷',
+      image: '/assets/assets_frontend/doc4.png',
+    },
+    {
+      name: 'Dr. Garcia',
+      specialty: 'Dentist 🦷',
+      image: '/assets/assets_frontend/doc5.png',
+    },
+  ];
 
   const handleBookAppointment = () => {
     if (selectedDate && selectedTime) {
@@ -37,10 +61,10 @@ const AppointmentDetail: React.FC = () => {
       specialty: doctor.specialty,
       date: selectedDate,
       time: selectedTime,
+      fee: appointmentFee,
     });
   };
 
-  // Close modal on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (modalOpen && modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -55,6 +79,7 @@ const AppointmentDetail: React.FC = () => {
   }, [modalOpen]);
 
   return (
+    <>
     <div className="flex flex-col md:flex-row p-8 mt-32 mx-auto max-w-6xl">
       <div className="w-full md:w-2/6 mb-4 md:mb-0">
         <Image
@@ -78,14 +103,15 @@ const AppointmentDetail: React.FC = () => {
               className="object-cover bg-slate-50 ml-4 rounded-full"
             />
           </h1>
-          <h2 className="text-xl font-semibold text-indigo-600 mb-1">{doctor.specialty}</h2>
+          <h2 className="text-xl font-semibold text-indigo-600 mb-4">{doctor.specialty}<span className='text-slate-500'>(2 years)</span></h2>
           <p className="text-md font-bold text-green-600 mb-1">
-            Degree: <span className='font-semibold'>{doctor.degree}</span>
+            Degree: <span className='font-semibold'>{doctor.degree}</span> 
           </p>
+          <h3 className='text-center my-2 text-orange-600 text-lg font-bold'>About 🤵</h3>
           <p className="text-sm text-slate-500 mb-4">{doctor.description}</p>
+          <h3 className='text-start my-2 text-indigo-600 text-lg font-bold'>Appointment fee <span className='font-extrabold text-green-700'>${appointmentFee}</span></h3>
         </div>
 
-        {/* Date Selection */}
         <h3 className="text-lg font-semibold mb-2 mt-4">Select Date:</h3>
         <DatePicker
           selected={selectedDate}
@@ -93,9 +119,9 @@ const AppointmentDetail: React.FC = () => {
           minDate={new Date()}
           className="border border-indigo-600 rounded p-2 mb-4 shadow-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
           dateFormat="MMMM d, yyyy"
+          placeholderText='select date'
         />
 
-        {/* Time Selection */}
         <h3 className="text-lg font-semibold mb-2">Select Time:</h3>
         <div className="flex flex-wrap mb-4">
           {times.map((time, index) => (
@@ -110,14 +136,12 @@ const AppointmentDetail: React.FC = () => {
           ))}
         </div>
 
-        {/* Book Appointment Button */}
         <div className="flex justify-center">
           <button onClick={handleBookAppointment} className="bg-gradient-to-r from-blue-500 to-blue-700 text-white font-bold py-2 px-6 rounded shadow-lg hover:shadow-xl transition duration-200">
             Book Appointment
           </button>
         </div>
 
-        {/* Confirmation Message */}
         {appointmentConfirmed && (
           <div className="mt-4 text-green-600">
             <p>Appointment booked successfully for {doctor.name}!</p>
@@ -126,7 +150,6 @@ const AppointmentDetail: React.FC = () => {
           </div>
         )}
 
-        {/* Confirmation Modal */}
         {modalOpen && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div ref={modalRef} className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
@@ -134,6 +157,7 @@ const AppointmentDetail: React.FC = () => {
               <p className="mt-2">Doctor: {doctor.name}</p>
               <p>Date: {selectedDate?.toLocaleDateString()}</p>
               <p>Time: {selectedTime}</p>
+              <p>Appointment Fee: <span className='font-extrabold text-green-700'>${appointmentFee}</span></p>
               <div className="flex justify-between mt-4">
                 <button onClick={confirmAppointment} className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition duration-200">
                   Confirm
@@ -146,7 +170,32 @@ const AppointmentDetail: React.FC = () => {
           </div>
         )}
       </div>
+      
+      {/* Related Doctors Section */}
+     
     </div>
+    <div className="mt-4 w-full mx-auto items-center">
+    <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent mb-5">
+          Related doctors
+        </h1>        <div className="flex flex-wrap gap-2 text-center justify-center items-center">
+          {relatedDoctors.map((relatedDoctor, index) => (
+            <div key={index} className="border rounded-lg overflow-hidden shadow-md w-1/7">
+              <Image
+                src={relatedDoctor.image}
+                alt={relatedDoctor.name}
+                width={80}
+                height={80}
+                className="object-cover w-[80%] h-30"
+              />
+              <div className="p-4">
+                <h2 className="mt-2 text-lg font-semibold">{relatedDoctor.name}</h2>
+                <p className="text-sm text-slate-500">{relatedDoctor.specialty}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 };
 
