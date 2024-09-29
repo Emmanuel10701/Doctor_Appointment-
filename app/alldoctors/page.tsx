@@ -75,7 +75,7 @@ const DoctorsPage: React.FC = () => {
         {/* Grid Display for Doctors */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredDoctors.map(doctor => (
-            <div key={doctor.id} className="border rounded-lg overflow-hidden shadow-md transition duration-200 hover:bg-blue-500">
+            <div key={doctor.id} className="border rounded-lg overflow-hidden shadow-md transition duration-200 hover:outline-1 hover:shadow-lg">
               <Image
                 src={doctor.image}
                 alt={doctor.name}
